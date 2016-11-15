@@ -18,6 +18,7 @@ namespace helpers
 
 	bool execute_context_command_by_name(const char* p_name, metadb_handle_list_cref p_handles, unsigned flags);
 	bool execute_mainmenu_command_by_name(const char* p_name);
+	bool get_mainmenu_command_status_by_name(const char* p_name, t_uint32 &status);
 	unsigned detect_charset(const char* fileName);
 	bool read_file(const char* path, pfc::string_base& content);
 	bool read_file_wide(unsigned codepage, const wchar_t* path, pfc::array_t<wchar_t>& content);
@@ -101,6 +102,22 @@ namespace helpers
 		__try
 		{
 			ret = execute_mainmenu_command_by_name(p_name);
+		}
+		__except (EXCEPTION_EXECUTE_HANDLER)
+		{
+			ret = false;
+		}
+
+		return ret;
+	}
+
+	__declspec(noinline) static bool get_mainmenu_command_status_by_name_SEH(const char* p_name, t_uint32 &status)
+	{
+		bool ret = false;
+
+		__try
+		{
+			ret = get_mainmenu_command_status_by_name(p_name, status);
 		}
 		__except (EXCEPTION_EXECUTE_HANDLER)
 		{
