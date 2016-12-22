@@ -211,6 +211,7 @@ private:
 	IGdiUtilsPtr m_gdi;
 	IFbUtilsPtr m_fb2k;
 	IJSUtilsPtr m_utils;
+	IWSHUtilsPtr m_wsh_utils;
 	IFbPlaylistManagerPtr m_playlistman;
 	pfc::tickcount_t m_dwStartTime;
 
